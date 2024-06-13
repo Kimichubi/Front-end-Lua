@@ -1,0 +1,10 @@
+.error-message {
+  color: #ff6347; /* Tomate */
+  background-color: #ffe6e6; /* Fundo claro para contraste */
+  border: 1px solid #ff6347;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: center;
+  font-weight: bold;
+}
