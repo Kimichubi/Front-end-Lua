@@ -5,10 +5,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UserService } from '../../service/user.service';
 import { AlertFailComponent } from '../common/alert-fail/alert-fail.component';
 import { AlertSuccessComponent } from '../common/alert-success/alert-success.component';
+import { RegisterComponent } from '../register/register.component';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -18,13 +20,33 @@ import { AlertSuccessComponent } from '../common/alert-success/alert-success.com
     ReactiveFormsModule,
     AlertFailComponent,
     AlertSuccessComponent,
+    RegisterComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   providers: [UserService],
 })
 export class LoginComponent {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private router: ActivatedRoute,
+    private navigation: Router
+  ) {}
+  isRegister: string = '';
+
+  ngOnInit() {
+    this.router.queryParams.subscribe(
+      (vl) => (this.isRegister = vl['registered'])
+    );
+    if (this.isRegister === 'true') {
+      this.textSuccess = 'Cadastro feito com sucesso!';
+      setTimeout(() => {
+        this.isRegister = '';
+        this.textSuccess = '';
+      }, 1000 * 3);
+    }
+  }
 
   @Input() loginForm = new FormGroup({
     email: new FormControl('', Validators.required),
@@ -45,9 +67,9 @@ export class LoginComponent {
             sessionStorage.setItem('token-api', response.access_token);
           }
           this.isMatch = true;
-          setTimeout(() => {
-            this.isMatch = false;
-          }, 3000);
+          if (this.isMatch) {
+            this.navigation.navigate(['/home']);
+          }
         },
         (error) => {
           console.error('Erro ao fazer login:', error);

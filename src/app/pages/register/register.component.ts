@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import {
   FormGroup,
   FormControl,
@@ -9,6 +9,7 @@ import {
 import { AlertFailComponent } from '../common/alert-fail/alert-fail.component';
 import { AlertSuccessComponent } from '../common/alert-success/alert-success.component';
 import { UserService } from '../../service/user.service';
+import { NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -17,13 +18,14 @@ import { UserService } from '../../service/user.service';
     ReactiveFormsModule,
     AlertFailComponent,
     AlertSuccessComponent,
+    NgOptimizedImage,
   ],
   providers: [UserService],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   registerForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -57,6 +59,9 @@ export class RegisterComponent {
         .subscribe(
           (response) => {
             this.isMatch = true;
+            if (this.isMatch) {
+              this.router.navigate([''], { queryParams: { registered: true } });
+            }
             setTimeout(() => {
               this.isMatch = false;
             }, 3000);

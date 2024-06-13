@@ -1,4 +1,7 @@
-
+.image-container{
+  display: flex;
+  justify-content: center;
+}
 .login-form {
   max-width: 400px;
   margin: 0 auto;
