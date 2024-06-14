@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+<div class="container">
+  <h1 class="page-title">Clientes Cadastrados</h1>
+
+  <div class="search-container">
+    <input type="text" class="search-input" placeholder="Buscar clientes..." />
+  </div>
+
+  <ul class="customer-list">
+    @for (customer of customers; track customer.id) {
+    <li class="customer-item">
+      <div class="customer-info">
+        <p class="customer-name">{{ customer.name }}</p>
+        <p class="customer-address">{{ customer.address }}</p>
+      </div>
+    </li>
+    }
+  </ul>
+</div>
+
+<app-footer></app-footer>

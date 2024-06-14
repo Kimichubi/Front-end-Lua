@@ -1,0 +1,31 @@
+<app-header></app-header>
+
+<div class="container">
+  <h1 class="page-title">Finanças</h1>
+
+  <ul class="financial-list">
+    @for (financial of financials; track financial.id) {
+    <li class="financial-item">
+      <div class="financial-info">
+        <p class="financial-name">
+          <strong>{{ financial.name }}</strong>
+        </p>
+        <p><strong>Data:</strong> {{ financial.date }}</p>
+        <p>
+          <strong>Data de Pagamento Limite:</strong>
+          {{ financial.date_to_pay }}
+        </p>
+        <p>
+          <strong>Status:</strong>
+          {{ financial.isPayed ? "Está Paga" : "Não está Paga" }}
+        </p>
+        <p><strong>Valor:</strong> R$ {{ financial.value }}</p>
+      </div>
+    </li>
+    @if(financials.length === 0){
+    <li class="empty-list">Não há finanças disponíveis no momento.</li>
+    } }
+  </ul>
+</div>
+
+<app-footer></app-footer>

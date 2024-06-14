@@ -1,0 +1,51 @@
+<app-header></app-header>
+
+<div class="navbar">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <button (click)="viewMode = 'listar'">Listar Categorias</button>
+    </li>
+    <li class="nav-item">
+      <button (click)="viewMode = 'criar'">Criar Nova Categoria</button>
+    </li>
+  </ul>
+</div>
+
+<div class="container">
+  <h2 class="page-title">Categorias</h2>
+  @if (viewMode === 'listar') {
+  <ul class="category-list">
+    @for (category of categorys; track category.id) {
+    <li class="category-item">
+      {{ category.name }}
+      <button class="btn-access">Acessar</button>
+      <button class="btn-delete">Deletar</button>
+    </li>
+    }
+  </ul>
+  } @if(viewMode === 'criar') {
+  <form
+    [formGroup]="categoryFormGroup"
+    (ngSubmit)="handleSubmit()"
+    class="category-form"
+  >
+    <div class="form-group">
+      <label for="categoryName">Nome da Categoria:</label>
+      <input
+        formControlName="name"
+        type="text"
+        id="categoryName"
+        name="categoryName"
+        required
+      />
+    </div>
+    <button type="submit" class="btn-submit">Criar Categoria</button>
+  </form>
+  }
+</div>
+@if(openAlertSuccess){
+<app-alert-success [text]="textSuccess"></app-alert-success>
+}@else if (openAlertFail) {
+<app-alert-fail [text]="textFail"></app-alert-fail>
+}
+<app-footer></app-footer>
