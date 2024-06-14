@@ -8,6 +8,14 @@ import { AlertFailComponent } from '../../common/alert-fail/alert-fail.component
 import { Observable, switchMap } from 'rxjs';
 import { Category } from '../../../interface/Category';
 import { DatePipe } from '@angular/common';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Product } from '../../../interface/Product';
+import { ProductService } from '../../../service/product/product.service';
 
 @Component({
   selector: 'app-category-spec-page',
@@ -18,6 +26,7 @@ import { DatePipe } from '@angular/common';
     AlertSuccessComponent,
     AlertFailComponent,
     DatePipe,
+    ReactiveFormsModule,
   ],
   templateUrl: './category-spec-page.component.html',
   styleUrl: './category-spec-page.component.css',
@@ -25,11 +34,25 @@ import { DatePipe } from '@angular/common';
 export class CategorySpecPageComponent {
   constructor(
     private categoryService: CategoryService,
+    private productService: ProductService,
     private router: ActivatedRoute
   ) {}
+
+  viewMode: string = 'listar';
   category!: Category;
   page: number = 1;
   categoryId!: number;
+  
+  newProductFormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    quantity: new FormControl('', Validators.required),
+    value: new FormControl('', Validators.required),
+  });
+
+  openAlertSuccess: boolean = false;
+  openAlertFail: boolean = false;
+  textSuccess: string = '';
+  textFail: string = '';
 
   ngOnInit() {
     this.categoryId = Number(this.router.snapshot.paramMap.get('id'));
@@ -42,6 +65,36 @@ export class CategorySpecPageComponent {
         },
         (error) => {
           console.log(error);
+        }
+      );
+  }
+
+  handleSubmit() {
+    this.productService
+      .newProduct({
+        name: this.newProductFormGroup.value.name!,
+        quantity: Number(this.newProductFormGroup.value.quantity),
+        value: Number(this.newProductFormGroup.value.value),
+        category: { connect: { id: this.categoryId } },
+      })
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.openAlertSuccess = true;
+          this.textSuccess = 'Sucesso Produto criado!';
+          setTimeout(() => {
+            this.openAlertSuccess = false;
+            this.textSuccess = '';
+          }, 1000 * 3);
+        },
+        (error) => {
+          console.log(error);
+          this.openAlertFail = true;
+          this.textFail = 'Error Produto não foi criado!';
+          setTimeout(() => {
+            this.openAlertFail = false;
+            this.textFail = '';
+          }, 1000 * 3);
         }
       );
   }

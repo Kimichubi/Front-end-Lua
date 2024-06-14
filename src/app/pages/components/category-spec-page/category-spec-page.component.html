@@ -16,6 +16,18 @@
     </p>
     <p><strong>Número de Produtos:</strong> {{ category.products.length }}</p>
 
+    <div class="navbar">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <button (click)="viewMode = 'listar'">Listar Produtos</button>
+        </li>
+        <li class="nav-item">
+          <button (click)="viewMode = 'criar'">Criar Novo Produto</button>
+        </li>
+      </ul>
+    </div>
+
+    @if (viewMode === 'listar') {
     <div class="product-list">
       <h3>Produtos</h3>
       <ul>
@@ -29,6 +41,45 @@
         }
       </ul>
     </div>
+    } @if (viewMode === 'criar') {
+    <form
+      [formGroup]="newProductFormGroup"
+      (ngSubmit)="handleSubmit()"
+      class="product-form"
+    >
+      <div class="form-group">
+        <label for="productName">Nome do Produto:</label>
+        <input
+          formControlName="name"
+          type="text"
+          id="productName"
+          name="productName"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="productValue">Preço:</label>
+        <input
+          formControlName="value"
+          type="number"
+          id="productValue"
+          name="productValue"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="productQuantity">Quantidade:</label>
+        <input
+          formControlName="quantity"
+          type="number"
+          id="productQuantity"
+          name="productQuantity"
+          required
+        />
+      </div>
+      <button type="submit" class="btn-submit">Criar Produto</button>
+    </form>
+    }
   </div>
   } @if(!category) {
   <div>
@@ -36,5 +87,9 @@
   </div>
   }
 </div>
+
+@if (openAlertSuccess) {
+<app-alert-success [text]="textSuccess"></app-alert-success>
+} @if (openAlertFail) { <app-alert-fail [text]="textFail"></app-alert-fail>}
 
 <app-footer></app-footer>

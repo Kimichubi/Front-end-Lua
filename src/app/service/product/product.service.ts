@@ -17,4 +17,22 @@ export class ProductService {
       headers,
     });
   }
+
+  newProduct(data: {
+    name: string;
+    quantity: number;
+    value: number;
+    category: { connect: { id: number } };
+  }): Observable<Product> {
+    const token = sessionStorage.getItem('token-api');
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'application/json');
+    const body = JSON.stringify(data);
+    console.log(body);
+    return this.http.post<Product>(`${this.baseUrl}/product/create`, body, {
+      headers,
+    });
+  }
 }

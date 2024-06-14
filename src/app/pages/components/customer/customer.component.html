@@ -1,8 +1,20 @@
 <app-header></app-header>
 
+<div class="navbar">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <button (click)="viewMode = 'listar'">Listar Clientes</button>
+    </li>
+    <li class="nav-item">
+      <button (click)="viewMode = 'criar'">Criar Novo Cliente</button>
+    </li>
+  </ul>
+</div>
+
 <div class="container">
   <h1 class="page-title">Clientes Cadastrados</h1>
 
+  @if (viewMode === 'listar') {
   <div class="search-container">
     <input type="text" class="search-input" placeholder="Buscar clientes..." />
   </div>
@@ -17,6 +29,35 @@
     </li>
     }
   </ul>
+  } @if(viewMode === 'criar') {
+  <form
+    [formGroup]="customerFormGroup"
+    (ngSubmit)="handleSubmit()"
+    class="customer-form"
+  >
+    <div class="form-group">
+      <label for="customerName">Nome do Cliente:</label>
+      <input
+        formControlName="name"
+        type="text"
+        id="customerName"
+        name="customerName"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="customerAddress">Endereço do Cliente:</label>
+      <input
+        formControlName="address"
+        type="text"
+        id="customerAddress"
+        name="customerAddress"
+        required
+      />
+    </div>
+    <button type="submit" class="btn-submit">Criar Cliente</button>
+  </form>
+  }
 </div>
 
 <app-footer></app-footer>
