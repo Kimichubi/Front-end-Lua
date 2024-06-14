@@ -13,12 +13,15 @@
 
 <div class="container">
   <h2 class="page-title">Categorias</h2>
+
   @if (viewMode === 'listar') {
   <ul class="category-list">
     @for (category of categorys; track category.id) {
     <li class="category-item">
-      {{ category.name }}
-      <button class="btn-access">Acessar</button>
+      <span class="category-name">{{ category.name }}</span>
+      <button class="btn-access" (click)="handleAcess(category.id)">
+        Acessar
+      </button>
       <button class="btn-delete" (click)="handleDelete(category.id)">
         Deletar
       </button>
@@ -45,9 +48,11 @@
   </form>
   }
 </div>
+
 @if(openAlertSuccess){
 <app-alert-success [text]="textSuccess"></app-alert-success>
-}@else if (openAlertFail) {
+} @else if (openAlertFail) {
 <app-alert-fail [text]="textFail"></app-alert-fail>
 }
+
 <app-footer></app-footer>

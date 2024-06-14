@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { AlertSuccessComponent } from '../../common/alert-success/alert-success.component';
 import { AlertFailComponent } from '../../common/alert-fail/alert-fail.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -27,7 +28,10 @@ import { AlertFailComponent } from '../../common/alert-fail/alert-fail.component
   styleUrl: './category.component.css',
 })
 export class CategoryComponent {
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    private categoryService: CategoryService,
+    private navigation: Router
+  ) {}
   categoryFormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
   });
@@ -87,5 +91,8 @@ export class CategoryComponent {
         }, 1000 * 3);
       }
     );
+  }
+  handleAcess(id: number) {
+    this.navigation.navigate([`category/${id}`]);
   }
 }

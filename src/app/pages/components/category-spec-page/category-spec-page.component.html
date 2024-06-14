@@ -1,0 +1,40 @@
+<app-header></app-header>
+
+<div class="container">
+  <h1 class="page-title">Detalhes da Categoria</h1>
+  @if (category) {
+  <div class="category-details">
+    <h2 class="category-title">{{ category.name }}</h2>
+    <p><strong>ID:</strong> {{ category.id }}</p>
+    <p>
+      <strong>Data de Criação:</strong>
+      {{ category.createdAt | date : "short" }}
+    </p>
+    <p>
+      <strong>Última Atualização:</strong>
+      {{ category.updatedAt | date : "short" }}
+    </p>
+    <p><strong>Número de Produtos:</strong> {{ category.products.length }}</p>
+
+    <div class="product-list">
+      <h3>Produtos</h3>
+      <ul>
+        @for (product of category.products; track product.id) {
+        <li class="product-item">
+          <p><strong>Nome:</strong> {{ product.name }}</p>
+          <p><strong>Preço:</strong> R$ {{ product.value }}</p>
+          <p><strong>Quantidade:</strong> {{ product.quantity }}</p>
+          <button class="btn-access">Acessar</button>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+  } @if(!category) {
+  <div>
+    <p>Categoria não encontrada.</p>
+  </div>
+  }
+</div>
+
+<app-footer></app-footer>

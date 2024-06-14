@@ -19,6 +19,16 @@ export class CategoryService {
     });
   }
 
+  getOneCategoryById(id: number, page: number): Observable<Category> {
+    const token = sessionStorage.getItem('token-api');
+    const header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Category>(
+      `${this.baseUrl}/category/one?id=${id}&page=${page}`,
+      {
+        headers: header,
+      }
+    );
+  }
   createCategory(name: string): Observable<Category> {
     const token = sessionStorage.getItem('token-api');
     const header = new HttpHeaders()
