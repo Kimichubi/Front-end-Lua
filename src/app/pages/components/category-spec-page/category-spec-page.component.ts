@@ -7,7 +7,7 @@ import { AlertSuccessComponent } from '../../common/alert-success/alert-success.
 import { AlertFailComponent } from '../../common/alert-fail/alert-fail.component';
 import { Observable, switchMap } from 'rxjs';
 import { Category } from '../../../interface/Category';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import {
   FormControl,
   FormGroup,
@@ -27,6 +27,7 @@ import { ProductService } from '../../../service/product/product.service';
     AlertFailComponent,
     DatePipe,
     ReactiveFormsModule,
+    NgClass
   ],
   templateUrl: './category-spec-page.component.html',
   styleUrl: './category-spec-page.component.css',
@@ -42,7 +43,7 @@ export class CategorySpecPageComponent {
   category!: Category;
   page: number = 1;
   categoryId!: number;
-  
+
   newProductFormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     quantity: new FormControl('', Validators.required),

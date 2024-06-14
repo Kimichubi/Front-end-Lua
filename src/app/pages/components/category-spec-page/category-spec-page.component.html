@@ -32,7 +32,13 @@
       <h3>Produtos</h3>
       <ul>
         @for (product of category.products; track product.id) {
-        <li class="product-item">
+        <li
+          class="product-item"
+          [ngClass]="{
+            'low-stock': product.quantity < 10,
+            'critical-stock': product.quantity < 3
+          }"
+        >
           <p><strong>Nome:</strong> {{ product.name }}</p>
           <p><strong>Preço:</strong> R$ {{ product.value }}</p>
           <p><strong>Quantidade:</strong> {{ product.quantity }}</p>

@@ -82,7 +82,15 @@
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 8px;
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.product-item.low-stock {
+  background-color: #fff9c4; /* Light yellow */
+}
+
+.product-item.critical-stock {
+  background-color: #ffcdd2; /* Light red */
 }
 
 .product-item:hover {
