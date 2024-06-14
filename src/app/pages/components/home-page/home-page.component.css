@@ -1,0 +1,61 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.welcome-message {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.date p {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 5px 0;
+}
+
+.task-prompt p {
+  font-size: 1.5rem;
+  color: #444;
+  margin-top: 20px;
+}
+
+.financial-section {
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.financial-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.financial-list {
+  list-style: none;
+  padding: 0;
+}
+
+.financial-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.financial-item p {
+  margin: 5px 0;
+}
+
+.financial-item strong {
+  font-weight: bold;
+}
+
+.no-financials {
+  color: #666;
+  margin-top: 10px;
+}

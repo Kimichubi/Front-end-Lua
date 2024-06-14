@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../interface/User';
+import { User } from '../../interface/User';
 @Injectable({
   providedIn: 'root',
 })
@@ -25,6 +25,13 @@ export class UserService {
     const body = JSON.stringify(userData);
     console.log(body);
     return this.http.post<User>(`${this.baseUrl}/auth/login`, body, {
+      headers: headers,
+    });
+  }
+  infos(): Observable<User> {
+    const token = sessionStorage.getItem('token-api');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<User>(`${this.baseUrl}/user/infos`, {
       headers: headers,
     });
   }

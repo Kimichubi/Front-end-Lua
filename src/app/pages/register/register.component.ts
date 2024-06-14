@@ -8,8 +8,9 @@ import {
 } from '@angular/forms';
 import { AlertFailComponent } from '../common/alert-fail/alert-fail.component';
 import { AlertSuccessComponent } from '../common/alert-success/alert-success.component';
-import { UserService } from '../../service/user.service';
+
 import { NgOptimizedImage } from '@angular/common';
+import { UserService } from '../../service/user/user.service';
 @Component({
   selector: 'app-register',
   standalone: true,

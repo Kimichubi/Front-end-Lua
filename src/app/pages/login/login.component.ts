@@ -6,11 +6,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { UserService } from '../../service/user.service';
+
 import { AlertFailComponent } from '../common/alert-fail/alert-fail.component';
 import { AlertSuccessComponent } from '../common/alert-success/alert-success.component';
 import { RegisterComponent } from '../register/register.component';
 import { NgOptimizedImage } from '@angular/common';
+import { UserService } from '../../service/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,6 @@ import { NgOptimizedImage } from '@angular/common';
     ReactiveFormsModule,
     AlertFailComponent,
     AlertSuccessComponent,
-    RegisterComponent,
     NgOptimizedImage,
   ],
   templateUrl: './login.component.html',

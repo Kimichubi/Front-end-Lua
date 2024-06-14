@@ -1,1 +1,34 @@
-<app-header></app-header> <app-footer></app-footer>
+<app-header></app-header>
+<div class="container">
+  <h1 class="welcome-message">Bem-vindo, {{ user.name }}</h1>
+  <div class="date">
+    <p>{{ day }} de {{ month }} de {{ year }}</p>
+  </div>
+  <div class="task-prompt">
+    <p>O que devemos fazer hoje?</p>
+  </div>
+</div>
+<div class="financial-section">
+  <h2>Financeiro - Contas a Pagar</h2>
+  <ul class="financial-list">
+    <ng-container>
+      @for(financial of filteredFinancials; track financial.id){
+      <li class="financial-item">
+        <p>
+          <strong>{{ financial.name }}</strong>
+        </p>
+        <p><strong>Data:</strong> {{ financial.date }}</p>
+        <p>
+          <strong>Data de Pagamento Limite:</strong> {{ financial.date_to_pay }}
+        </p>
+        <p><strong>Status:</strong> Não está Paga</p>
+        <p><strong>Valor:</strong> R$ {{ financial.value }}</p>
+      </li>
+      }
+    </ng-container>
+    @if(filteredFinancials.length === 0){
+    <li>Não há contas a pagar no momento.</li>
+    }
+  </ul>
+</div>
+<app-footer></app-footer>
