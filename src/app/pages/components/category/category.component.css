@@ -17,7 +17,7 @@
 }
 
 .nav-item button {
-  background-color: #ff6347; /* Tomate */
+  background-color: #333; /* Tomate */
   border: none;
   color: white;
   padding: 10px 20px;
@@ -29,7 +29,7 @@
 }
 
 .nav-item button:hover {
-  background-color: #ff4500; /* Red-Orange */
+  background-color: #1d1d1d;; /* Red-Orange */
   transform: translateY(-2px);
 }
 
