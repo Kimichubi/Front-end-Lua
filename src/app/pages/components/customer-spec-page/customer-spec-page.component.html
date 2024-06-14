@@ -32,27 +32,30 @@
             [value]="customer.address"
           />
         </div>
-        <p><strong>ID:</strong> {{ customer.id }}</p>
-        <p><strong>Criado em:</strong> {{ customer.createdAt | date }}</p>
-        <p><strong>Atualizado em:</strong> {{ customer.updatedAt | date }}</p>
-        <button type="submit" class="btn-edit">Editar</button>
+        <div class="info-row">
+          <p><strong>ID:</strong> {{ customer.id }}</p>
+          <p><strong>Criado em:</strong> {{ customer.createdAt | date }}</p>
+          <p><strong>Atualizado em:</strong> {{ customer.updatedAt | date }}</p>
+        </div>
+        <button type="submit" class="btn btn-edit">Editar</button>
       </form>
     </div>
-    <div>
+    <div class="add-product">
       <h1>Adicionar novo produto ao cliente</h1>
-      <form [formGroup]="addProductGroup" (ngSubmit)="handleAddProduct()" action="">
-        <select
-          formControlName="product"
-          id="customerProduct"
-          required
-          class="form-input"
-        >
-          <option value="">Selecione um produto</option>
-          @for (product of products; track product.id) {
-          <option [value]="product.id">{{ product.name }}</option>
-          }
-        </select>
-        <button type="submit">Adicionar</button>
+      <form [formGroup]="addProductGroup" (ngSubmit)="handleAddProduct()">
+        <div class="form-group">
+          <select
+            formControlName="product"
+            id="customerProduct"
+            class="form-control"
+          >
+            <option value="">Selecione um produto</option>
+            @for (product of products; track product.id) {
+            <option [value]="product.id">{{ product.name }}</option>
+            }
+          </select>
+        </div>
+        <button type="submit" class="btn btn-add">Adicionar</button>
       </form>
     </div>
     <div class="customer-products">

@@ -1,3 +1,5 @@
+/* Estilos para a página de detalhes do cliente */
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -5,10 +7,10 @@
 }
 
 .customer-details {
-  background-color: #f9f9f9;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .customer-header {
@@ -18,11 +20,14 @@
 .page-title {
   font-size: 24px;
   color: #333;
-  margin-bottom: 10px;
 }
 
 .customer-info {
   margin-bottom: 20px;
+}
+
+.info-row {
+  margin-bottom: 10px;
 }
 
 .form-group {
@@ -36,31 +41,39 @@ label {
   color: #333;
 }
 
-.form-control {
+input[type="text"],
+select {
   width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: border-color 0.3s ease;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-.form-control:focus {
-  outline: none;
-  border-color: #007bff;
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: white;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 16px 16px;
+  padding-right: 30px;
 }
 
-.btn-edit {
-  padding: 12px 24px;
+.btn-edit,
+.btn-add {
+  padding: 10px 20px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.btn-edit:hover {
+.btn-edit:hover,
+.btn-add:hover {
   background-color: #0056b3;
 }
 
@@ -74,18 +87,24 @@ label {
 }
 
 .product-item {
-  margin-bottom: 10px;
-  padding: 12px;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
 }
 
-.product-item p {
-  margin: 5px 0;
+/* Estilos para o header e footer */
+
+.app-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
 }
 
-.product-item p:first-child {
-  margin-top: 0;
-  font-weight: bold;
+.app-footer {
+  margin-top: 20px;
+  background-color: #f5f5f5;
+  padding: 10px 0;
+  text-align: center;
 }
