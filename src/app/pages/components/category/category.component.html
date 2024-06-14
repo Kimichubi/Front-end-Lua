@@ -19,7 +19,9 @@
     <li class="category-item">
       {{ category.name }}
       <button class="btn-access">Acessar</button>
-      <button class="btn-delete">Deletar</button>
+      <button class="btn-delete" (click)="handleDelete(category.id)">
+        Deletar
+      </button>
     </li>
     }
   </ul>

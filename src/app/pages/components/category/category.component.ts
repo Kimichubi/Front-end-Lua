@@ -72,4 +72,20 @@ export class CategoryComponent {
         }
       );
   }
+  handleDelete(id: number) {
+    this.categoryService.deleteCategory(id).subscribe(
+      (response) => {
+        this.categorys = this.categorys.filter((vl) => vl.id !== response.id);
+      },
+      (error) => {
+        console.log(error);
+        this.openAlertFail = true;
+        this.textFail = 'Algo deu errado por favor tente novamente!';
+        setTimeout(() => {
+          this.openAlertSuccess = false;
+          this.textFail = '';
+        }, 1000 * 3);
+      }
+    );
+  }
 }

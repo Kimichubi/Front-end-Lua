@@ -30,4 +30,16 @@ export class CategoryService {
       headers: header,
     });
   }
+  deleteCategory(id: number): Observable<Category> {
+    const token = sessionStorage.getItem('token-api');
+    const header = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'application/json');
+    const body = JSON.stringify({ id });
+
+    return this.http.delete<Category>(`${this.baseUrl}/category/delete`, {
+      headers: header,
+      body,
+    });
+  }
 }

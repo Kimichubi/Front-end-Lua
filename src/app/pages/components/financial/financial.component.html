@@ -5,7 +5,12 @@
 
   <ul class="financial-list">
     @for (financial of financials; track financial.id) {
-    <li class="financial-item">
+    <li
+      [ngClass]="{
+        'financial-item-paid': financial.isPayed,
+        'financial-item-unpaid': !financial.isPayed
+      }"
+    >
       <div class="financial-info">
         <p class="financial-name">
           <strong>{{ financial.name }}</strong>
@@ -20,11 +25,12 @@
           {{ financial.isPayed ? "Está Paga" : "Não está Paga" }}
         </p>
         <p><strong>Valor:</strong> R$ {{ financial.value }}</p>
+        <button class="btn-access">Acessar</button>
       </div>
     </li>
-    @if(financials.length === 0){
+    } @if(financials.length === 0){
     <li class="empty-list">Não há finanças disponíveis no momento.</li>
-    } }
+    }
   </ul>
 </div>
 
