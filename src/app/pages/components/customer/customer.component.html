@@ -1,18 +1,18 @@
 <app-header></app-header>
 
-<div class="navbar">
-  <ul class="nav-list">
-    <li class="nav-item">
-      <button (click)="viewMode = 'listar'">Listar Clientes</button>
-    </li>
-    <li class="nav-item">
-      <button (click)="viewMode = 'criar'">Criar Novo Cliente</button>
-    </li>
-  </ul>
-</div>
-
 <div class="container">
   <h1 class="page-title">Clientes Cadastrados</h1>
+
+  <div class="navbar">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <button (click)="viewMode = 'listar'" class="nav-button">Listar Clientes</button>
+      </li>
+      <li class="nav-item">
+        <button (click)="viewMode = 'criar'" class="nav-button">Criar Novo Cliente</button>
+      </li>
+    </ul>
+  </div>
 
   @if (viewMode === 'listar') {
   <div class="search-container">
@@ -25,39 +25,52 @@
       <div class="customer-info">
         <p class="customer-name">{{ customer.name }}</p>
         <p class="customer-address">{{ customer.address }}</p>
+        <div class="customer-products">
+          <h3>Produtos</h3>
+          <ul class="product-list">
+            @for (product of customer.products; track product.id) {
+            <li class="product-item">
+              <p><strong>Nome:</strong> {{ product.name }}</p>
+              <p><strong>Valor:</strong> R$ {{ product.value }}</p>
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+      <div class="customer-actions">
+        <button (click)="handleGoToClientPage(customer.id)" class="action-button">Acessar</button>
       </div>
     </li>
     }
   </ul>
-  } @if(viewMode === 'criar') {
-  <form
-    [formGroup]="customerFormGroup"
-    (ngSubmit)="handleSubmit()"
-    class="customer-form"
-  >
+  } @else if (viewMode === 'criar') {
+  <form [formGroup]="customerFormGroup" (ngSubmit)="handleSubmit()" class="customer-form">
     <div class="form-group">
       <label for="customerName">Nome do Cliente:</label>
-      <input
-        formControlName="name"
-        type="text"
-        id="customerName"
-        name="customerName"
-        required
-      />
+      <input formControlName="name" type="text" id="customerName" name="customerName" required class="form-input" />
     </div>
     <div class="form-group">
       <label for="customerAddress">Endereço do Cliente:</label>
-      <input
-        formControlName="address"
-        type="text"
-        id="customerAddress"
-        name="customerAddress"
-        required
-      />
+      <input formControlName="address" type="text" id="customerAddress" name="customerAddress" required class="form-input" />
+    </div>
+    <div class="form-group">
+      <label for="customerProduct">Produto:</label>
+      <select formControlName="product" id="customerProduct" required class="form-input">
+        <option value="">Selecione um produto</option>
+        @for (product of products; track product.id) {
+        <option [value]="product.id">{{ product.name }}</option>
+        }
+      </select>
     </div>
     <button type="submit" class="btn-submit">Criar Cliente</button>
   </form>
   }
 </div>
+
+@if (openAlertSuccess) {
+<app-alert-success [text]="textSuccess"></app-alert-success>
+} @else if (openAlertFail) {
+<app-alert-fail [text]="textFail"></app-alert-fail>
+}
 
 <app-footer></app-footer>

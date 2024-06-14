@@ -8,6 +8,7 @@ import { FinancialComponent } from './pages/components/financial/financial.compo
 import { CategoryComponent } from './pages/components/category/category.component';
 import path from 'path';
 import { CategorySpecPageComponent } from './pages/components/category-spec-page/category-spec-page.component';
+import { CustomerSpecPageComponent } from './pages/components/customer-spec-page/customer-spec-page.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent, title: 'Login' },
@@ -21,5 +22,10 @@ export const routes: Routes = [
     path: 'category/:id',
     component: CategorySpecPageComponent,
     title: `Category Page`,
+  },
+  {
+    path: 'customer/:id',
+    component: CustomerSpecPageComponent,
+    title: `Customer Page`,
   },
 ];
