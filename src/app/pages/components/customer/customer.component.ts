@@ -47,6 +47,8 @@ export class CustomerComponent {
   customerFormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
+    phone: new FormControl('', Validators.required),
+    dateToChange: new FormControl('', Validators.required),
     product: new FormControl('', Validators.required),
   });
 
@@ -74,6 +76,8 @@ export class CustomerComponent {
       .creatNewCustomer({
         name: this.customerFormGroup.value.name!,
         address: this.customerFormGroup.value.address!,
+        phone: this.customerFormGroup.value.phone!,
+        dateToChange: this.customerFormGroup.value.dateToChange!,
         products: {
           connect: [{ id: Number(this.customerFormGroup.value.product) }],
         },

@@ -19,10 +19,11 @@ export class CustomerService {
       headers: header,
     });
   }
-
   creatNewCustomer(data: {
     name: string;
     address: string;
+    phone: string;
+    dateToChange: string;
     products: { connect: [{ id: number }] };
   }): Observable<Customer> {
     const token = sessionStorage.getItem('token-api');

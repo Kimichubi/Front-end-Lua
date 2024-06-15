@@ -7,8 +7,8 @@
     @for (financial of financials; track financial.id) {
     <li
       [ngClass]="{
-        'financial-item-paid': financial.isPayed,
-        'financial-item-unpaid': !financial.isPayed
+        'financial-item-paid': financial.isPaid,
+        'financial-item-unpaid': !financial.isPaid
       }"
     >
       <div class="financial-info">
@@ -18,11 +18,11 @@
         <p><strong>Data:</strong> {{ financial.date }}</p>
         <p>
           <strong>Data de Pagamento Limite:</strong>
-          {{ financial.date_to_pay }}
+          {{ financial.dateToPay }}
         </p>
         <p>
           <strong>Status:</strong>
-          {{ financial.isPayed ? "Está Paga" : "Não está Paga" }}
+          {{ financial.isPaid ? "Está Paga" : "Não está Paga" }}
         </p>
         <p><strong>Valor:</strong> R$ {{ financial.value }}</p>
         <button class="btn-access">Acessar</button>

@@ -16,9 +16,14 @@
       <p>
         <strong>{{ financial.name }}</strong>
       </p>
+      @if(financial.isFixed){
+      <p><strong>Tipo de conta : Fixa</strong></p>
+      }@else{
+      <p><strong>A conta é variavél</strong></p>
+      }
       <p><strong>Data:</strong> {{ financial.date }}</p>
       <p>
-        <strong>Data de Pagamento Limite:</strong> {{ financial.date_to_pay }}
+        <strong>Data de Pagamento Limite:</strong> {{ financial.dateToPay }}
       </p>
       <p><strong>Status:</strong> Não está Paga</p>
       <p><strong>Valor:</strong> R$ {{ financial.value }}</p>

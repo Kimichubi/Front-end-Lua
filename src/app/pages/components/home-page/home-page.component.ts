@@ -22,6 +22,7 @@ export class HomePageComponent {
     private userService: UserService,
     private financialService: FinancialService
   ) {}
+
   user!: User;
   financials!: Financial[];
   filteredFinancials!: Financial[];
@@ -58,7 +59,7 @@ export class HomePageComponent {
       (response) => {
         this.financials = response;
         this.filteredFinancials = this.financials.filter(
-          (financial) => !financial.isPayed
+          (financial) => !financial.isPaid
         );
       },
       (error) => {
