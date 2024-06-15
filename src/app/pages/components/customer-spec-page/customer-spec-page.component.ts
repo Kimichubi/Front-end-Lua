@@ -61,6 +61,8 @@ export class CustomerSpecPageComponent {
         this.editFormGroup = this.formBuilder.group({
           name: [this.customer.name],
           address: [this.customer.address],
+          phone: [this.customer.phone],
+          dateToChange: [this.customer.dateToChange],
         });
       },
       (error) => {
@@ -81,6 +83,8 @@ export class CustomerSpecPageComponent {
       .updatedCustomerInfos({
         id: this.customer.id,
         name: this.editFormGroup.value.name,
+        phone: this.editFormGroup.value.phone,
+        dateToChange: this.editFormGroup.value.dateToChange,
         address: this.editFormGroup.value.address,
       })
       .subscribe(
@@ -97,6 +101,8 @@ export class CustomerSpecPageComponent {
       .updatedCustomerInfos({
         id: this.customer.id,
         name: this.editFormGroup.value.name,
+        phone: this.editFormGroup.value.phone,
+        dateToChange: this.editFormGroup.value.dateToChange,
         address: this.editFormGroup.value.address,
         products: {
           connect: { id: Number(this.addProductGroup.value.product) },

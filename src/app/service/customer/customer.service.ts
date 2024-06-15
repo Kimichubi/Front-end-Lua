@@ -45,8 +45,10 @@ export class CustomerService {
 
   updatedCustomerInfos(data: {
     id: number;
-    name?: string;
-    address?: string;
+    name: string;
+    address: string;
+    phone: string;
+    dateToChange: string;
     products?: { connect: { id: number } };
   }): Observable<Customer> {
     const token = sessionStorage.getItem('token-api');
@@ -54,6 +56,7 @@ export class CustomerService {
       .set('Authorization', `Bearer ${token}`)
       .set('Content-Type', 'application/json');
     const body = JSON.stringify(data);
+    console.log(data);
     return this.http.put<Customer>(`${this.baseUrl}/customer/update`, body, {
       headers: header,
     });

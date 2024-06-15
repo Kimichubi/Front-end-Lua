@@ -32,9 +32,27 @@
             [value]="customer.address"
           />
         </div>
+        <div class="form-group">
+          <label for="address">Telefone do Cliente:</label>
+          <input
+            type="text"
+            id="phone"
+            formControlName="phone"
+            class="form-control"
+            [value]="customer.phone"
+          />
+        </div>
+        <div class="form-group">
+          <label for="dateToChange">Data da última troca:</label>
+          <input
+            type="text"
+            id="dateToChange"
+            formControlName="dateToChange"
+            class="form-control"
+            [value]="customer.dateToChange"
+          />
+        </div>
         <div class="info-row">
-          <p><strong>ID:</strong> {{ customer.id }}</p>
-          <p><strong>Criado em:</strong> {{ customer.createdAt | date }}</p>
           <p><strong>Atualizado em:</strong> {{ customer.updatedAt | date }}</p>
         </div>
         <button type="submit" class="btn btn-edit">Editar</button>
