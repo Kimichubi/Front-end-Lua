@@ -29,12 +29,12 @@ export class CategoryService {
       }
     );
   }
-  createCategory(name: string): Observable<Category> {
+  createCategory(name: string, description: string): Observable<Category> {
     const token = sessionStorage.getItem('token-api');
     const header = new HttpHeaders()
       .set('Authorization', `Bearer ${token}`)
       .set('Content-Type', 'application/json');
-    const body = JSON.stringify({ name });
+    const body = JSON.stringify({ name, description });
 
     return this.http.post<Category>(`${this.baseUrl}/category/create`, body, {
       headers: header,

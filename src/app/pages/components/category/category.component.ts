@@ -34,6 +34,7 @@ export class CategoryComponent {
   ) {}
   categoryFormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
+    description: new FormControl(''),
   });
 
   openAlertSuccess: boolean = false;
@@ -43,6 +44,7 @@ export class CategoryComponent {
   categorys!: Category[];
   viewMode: string = 'listar';
   page: number = 1;
+  
   ngOnInit() {
     this.categoryService.getAllCategorys(this.page).subscribe(
       (response) => {
@@ -55,7 +57,10 @@ export class CategoryComponent {
   }
   handleSubmit() {
     this.categoryService
-      .createCategory(this.categoryFormGroup.value.name!)
+      .createCategory(
+        this.categoryFormGroup.value.name!,
+        this.categoryFormGroup.value.description!
+      )
       .subscribe(
         (response) => {
           this.openAlertSuccess = true;

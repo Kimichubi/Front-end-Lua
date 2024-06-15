@@ -5,7 +5,6 @@
   @if (category) {
   <div class="category-details">
     <h2 class="category-title">{{ category.name }}</h2>
-    <p><strong>ID:</strong> {{ category.id }}</p>
     <p>
       <strong>Data de Criação:</strong>
       {{ category.createdAt | date : "short" }}
@@ -13,6 +12,10 @@
     <p>
       <strong>Última Atualização:</strong>
       {{ category.updatedAt | date : "short" }}
+    </p>
+    <p>
+      <strong>Descrição:</strong>
+      {{ category.description }}
     </p>
     <p><strong>Número de Produtos:</strong> {{ category.products.length }}</p>
 

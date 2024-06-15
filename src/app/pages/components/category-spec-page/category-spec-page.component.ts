@@ -27,7 +27,7 @@ import { ProductService } from '../../../service/product/product.service';
     AlertFailComponent,
     DatePipe,
     ReactiveFormsModule,
-    NgClass
+    NgClass,
   ],
   templateUrl: './category-spec-page.component.html',
   styleUrl: './category-spec-page.component.css',
