@@ -69,4 +69,32 @@
   </div>
   }
 </div>
+<div class="container">
+  <h1>
+    Aqui estão todas as vendas com data de instalação para hoje
+    {{ day }} de {{ month }}
+  </h1>
+  @for(sell of todaySells; track sell.id){
+  <div class="customer-info">
+    <p class="customer-address">Nome do Cliente: {{ sell.customer.name }}</p>
+    <p class="customer-address">
+      Endereço do Cliente: {{ sell.customer.address }}
+    </p>
+    <p class="customer-name">Data para instalar: {{ sell.dateToInstall }}</p>
+    <p class="customer-address">Data da venda: {{ sell.dateOfSell }}</p>
+    <p class="customer-address">Valor: R${{ sell.value }}</p>
+    @if (sell.isPaid) {
+    <p>Esta paga: Sim!</p>
+    }@else {
+    <p>Esta paga: Não!</p>
+    } @for (product of sell.products; track product.id) {
+    <h3>Produtos:</h3>
+    <p class="customer-name">Nome do produto: {{ product.name }}</p>
+    <p class="customer-address">Valor: R${{ product.value }}</p>
+    }
+
+    <button class="linkButton" (click)="handleProduct(sell.id)">Acessar</button>
+  </div>
+  }
+</div>
 <app-footer></app-footer>

@@ -11,6 +11,8 @@ import { CustomerService } from '../../../service/customer/customer.service';
 import { Customer } from '../../../interface/Customer';
 import { ProductService } from '../../../service/product/product.service';
 import { Product } from '../../../interface/Product';
+import { SellsService } from '../../../service/sells/sells.service';
+import { Sell } from '../../../interface/Sells';
 
 @Component({
   selector: 'app-home-page',
@@ -26,7 +28,8 @@ export class HomePageComponent {
     private userService: UserService,
     private financialService: FinancialService,
     private customerService: CustomerService,
-    private productServic: ProductService
+    private productService: ProductService,
+    private sellService: SellsService
   ) {}
 
   user!: User;
@@ -61,6 +64,9 @@ export class HomePageComponent {
   products!: Product[];
   remainingProducts!: Product[];
 
+  sells!: Sell[];
+  todaySells!: Sell[];
+
   ngOnInit() {
     this.userService.infos().subscribe(
       (response) => {
@@ -89,11 +95,25 @@ export class HomePageComponent {
         console.error(error);
       }
     );
-    this.productServic.getAllProducts(this.page).subscribe(
+    this.productService.getAllProducts(this.page).subscribe(
       (response) => {
         this.products = response;
         this.remainingProducts = response.filter(
           (product) => product.quantity < 5
+        );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+    this.sellService.getSells(this.page).subscribe(
+      (response) => {
+        this.sells = response;
+
+        this.todaySells = response.filter(
+          (sell) =>
+            sell.dateToInstall === `${this.day}/${this.date.getMonth() + 1}` ||
+            sell.dateToInstall === `${this.day}/0${this.date.getMonth() + 1}`
         );
       },
       (error) => {
