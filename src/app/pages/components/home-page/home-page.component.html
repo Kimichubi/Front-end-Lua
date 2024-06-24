@@ -17,9 +17,9 @@
         <strong>{{ financial.name }}</strong>
       </p>
       @if(financial.isFixed){
-      <p><strong>Tipo de conta : Fixa</strong></p>
+      <p><strong>Tipo de conta:</strong> Fixa</p>
       }@else{
-      <p><strong>A conta é variavél</strong></p>
+      <p><strong>Tipo de conta:</strong> Variável</p>
       }
       <p><strong>Data:</strong> {{ financial.date }}</p>
       <p>
@@ -32,5 +32,41 @@
     <li>Não há contas a pagar no momento.</li>
     }
   </ul>
+</div>
+<div class="container">
+  <h1>
+    Aqui estão todos os clientes para troca de produto na data de hoje
+    {{ day }} de {{ month }}
+  </h1>
+  @for(customer of customersToChange; track customer.id){
+  <div class="customer-info">
+    <p class="customer-name">Nome do Cliente: {{ customer.name }}</p>
+    <p class="customer-address">Endereço: {{ customer.address }}</p>
+    <p class="customer-address">Data de troca: {{ customer.dateToChange }}</p>
+    @for(product of customer.products; track product.id){
+    <p class="product-name">Nome do Produto: {{ product.name }}</p>
+    <p class="product-value">Valor: R${{ product.value }}</p>
+    }
+    <button class="linkButton" (click)="handleClient(customer.id)">
+      Acessar
+    </button>
+  </div>
+  }
+</div>
+<div class="container">
+  <h1>
+    Aqui estão todos os produtos que estão acabando na data de hoje
+    {{ day }} de {{ month }}
+  </h1>
+  @for(product of remainingProducts; track product.id){
+  <div class="customer-info">
+    <p class="customer-name">Nome do Produto: {{ product.name }}</p>
+    <p class="customer-address">Valor: R${{ product.value }}</p>
+    <p class="customer-address">Quantidade: {{ product.quantity }}</p>
+    <button class="linkButton" (click)="handleProduct(product.id)">
+      Acessar
+    </button>
+  </div>
+  }
 </div>
 <app-footer></app-footer>

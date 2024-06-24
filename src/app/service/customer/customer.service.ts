@@ -56,7 +56,6 @@ export class CustomerService {
       .set('Authorization', `Bearer ${token}`)
       .set('Content-Type', 'application/json');
     const body = JSON.stringify(data);
-    console.log(data);
     return this.http.put<Customer>(`${this.baseUrl}/customer/update`, body, {
       headers: header,
     });
