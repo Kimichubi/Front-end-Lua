@@ -13,7 +13,17 @@ export class FinancialService {
   getFinancial(page: number): Observable<Financial[]> {
     const token = sessionStorage.getItem('token-api');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<Financial[]>(`${this.baseUrl}/financial?page=${page}`, {
+    return this.http.get<Financial[]>(
+      `${this.baseUrl}/financial?page=${page}`,
+      {
+        headers: headers,
+      }
+    );
+  }
+  getOneFinancial(id: number): Observable<Financial> {
+    const token = sessionStorage.getItem('token-api');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Financial>(`${this.baseUrl}/financial/one?id=${id}`, {
       headers: headers,
     });
   }

@@ -1,0 +1,48 @@
+.full-screen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+  margin: 0;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.financial-item {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.financial-item:last-child {
+  border-bottom: none;
+}
+
+.financial-item p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.financial-item strong {
+  color: #333;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.status-yes {
+  color: green;
+}
+
+.status-no {
+  color: red;
+}

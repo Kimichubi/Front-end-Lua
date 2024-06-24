@@ -9,6 +9,7 @@ import { CategoryComponent } from './pages/components/category/category.componen
 import path from 'path';
 import { CategorySpecPageComponent } from './pages/components/category-spec-page/category-spec-page.component';
 import { CustomerSpecPageComponent } from './pages/components/customer-spec-page/customer-spec-page.component';
+import { FinancialSpecPageComponent } from './pages/components/financial-spec-page/financial-spec-page.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent, title: 'Login' },
@@ -27,5 +28,10 @@ export const routes: Routes = [
     path: 'customer/:id',
     component: CustomerSpecPageComponent,
     title: `Customer Page`,
+  },
+  {
+    path: 'financial/:id',
+    component: FinancialSpecPageComponent,
+    title: `Financial Page`,
   },
 ];

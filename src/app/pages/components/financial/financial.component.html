@@ -25,7 +25,9 @@
           {{ financial.isPaid ? "Está Paga" : "Não está Paga" }}
         </p>
         <p><strong>Valor:</strong> R$ {{ financial.value }}</p>
-        <button class="btn-access">Acessar</button>
+        <button (click)="handleLinkFinancial(financial.id)" class="btn-access">
+          Acessar
+        </button>
       </div>
     </li>
     } @if(financials.length === 0){

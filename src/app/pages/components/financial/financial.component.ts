@@ -4,6 +4,7 @@ import { FooterComponent } from '../../common/footer/footer.component';
 import { FinancialService } from '../../../service/financial/financial.service';
 import { Financial } from '../../../interface/Financial';
 import { NgClass } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-financial',
@@ -14,7 +15,10 @@ import { NgClass } from '@angular/common';
   providers: [FinancialService],
 })
 export class FinancialComponent {
-  constructor(private financialService: FinancialService) {}
+  constructor(
+    private financialService: FinancialService,
+    private router: Router
+  ) {}
   financials!: Financial[];
   page: number = 1;
   ngOnInit() {
@@ -26,5 +30,8 @@ export class FinancialComponent {
         console.log(error);
       }
     );
+  }
+  handleLinkFinancial(id: number) {
+    this.router.navigate([`financial/${id}`]);
   }
 }
