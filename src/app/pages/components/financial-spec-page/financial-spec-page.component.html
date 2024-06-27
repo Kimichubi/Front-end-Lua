@@ -3,22 +3,92 @@
 <div class="full-screen-container">
   <div class="container">
     <div class="financial-item">
-      <p><strong>Nome:</strong> {{ financial.name }}</p>
-      <p><strong>Data de Pagamento:</strong> {{ financial.dateToPay }}</p>
-      <p><strong>Valor:</strong> R$ {{ financial.value }}</p>
-      @if(financial.isFixed){
-      <p><strong>É fixa:</strong> <span class="status status-yes">Sim</span></p>
-      }@else {
-      <p><strong>É fixa:</strong> <span class="status status-no">Não</span></p>
-      } @if(financial.isPaid){
-      <p>
-        <strong>Está paga:</strong> <span class="status status-yes">Sim</span>
-      </p>
-      }@else {
-      <p>
-        <strong>Está paga:</strong> <span class="status status-no">Não</span>
-      </p>
-      }
+      <form [formGroup]="editFormGroup" (ngSubmit)="handleSubmit()">
+        <div class="form-group">
+          <label for="name">Nome:</label>
+          <input
+            [value]="financial.name"
+            type="text"
+            id="name"
+            formControlName="name"
+            class="form-control"
+            placeholder="Nome"
+          />
+        </div>
+        <div class="form-group">
+          <label for="dateToPay">Data para pagar:</label>
+          <input
+            [value]="financial.dateToPay"
+            type="text"
+            id="dateToPay"
+            formControlName="dateToPay"
+            class="form-control"
+            placeholder="Data de Pagamento"
+          />
+        </div>
+        <div class="form-group">
+          <label for="date">Data:</label>
+          <input
+            [value]="financial.date"
+            type="text"
+            id="date"
+            formControlName="date"
+            class="form-control"
+            placeholder="Data"
+          />
+        </div>
+        <div class="form-group">
+          <label for="value">Valor:</label>
+          <input
+            [value]="financial.value"
+            type="text"
+            id="value"
+            formControlName="value"
+            class="form-control"
+            placeholder="Valor"
+          />
+        </div>
+
+        <div class="status-container">
+          <p>
+            <strong>É fixa:</strong>
+            <span
+              class="status"
+              [ngClass]="{
+                'status-yes': financial.isFixed,
+                'status-no': !financial.isFixed
+              }"
+            >
+              {{ financial.isFixed ? "Sim" : "Não" }}
+            </span>
+          </p>
+          <select id="isFixed" formControlName="isFixed" class="form-select">
+            <option [value]="true" [selected]="financial.isFixed">Sim</option>
+            <option [value]="false" [selected]="!financial.isFixed">Não</option>
+          </select>
+        </div>
+
+        <div class="status-container">
+          <p>
+            <strong>Está paga:</strong>
+            <span
+              class="status"
+              [ngClass]="{
+                'status-yes': financial.isPaid,
+                'status-no': !financial.isPaid
+              }"
+            >
+              {{ financial.isPaid ? "Sim" : "Não" }}
+            </span>
+          </p>
+          <select id="isPaid" formControlName="isPaid" class="form-select">
+            <option [value]="true" [selected]="financial.isPaid">Sim</option>
+            <option [value]="false" [selected]="!financial.isPaid">Não</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
     </div>
   </div>
 </div>

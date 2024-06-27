@@ -27,4 +27,41 @@ export class FinancialService {
       headers: headers,
     });
   }
+
+  create(data: {
+    name: string;
+    value: number;
+    dateToPay: string;
+    isPaid: boolean;
+    isFixed: boolean;
+    date: string;
+  }): Observable<Financial> {
+    const token = sessionStorage.getItem('token-api');
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'application/json');
+    const body = JSON.stringify(data);
+    return this.http.post<Financial>(`${this.baseUrl}/financial/create`, body, {
+      headers: headers,
+    });
+  }
+
+  updateFinancial(data: {
+    id: number;
+    name: string;
+    value: number;
+    dateToPay: string;
+    isPaid: boolean;
+    isFixed: boolean;
+    date: string;
+  }): Observable<Financial> {
+    const token = sessionStorage.getItem('token-api');
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'application/json');
+    const body = JSON.stringify(data);
+    return this.http.put<Financial>(`${this.baseUrl}/financial/update`, body, {
+      headers: headers,
+    });
+  }
 }
