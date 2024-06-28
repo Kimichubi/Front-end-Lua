@@ -36,6 +36,7 @@ export class HomePageComponent {
 
   financials!: Financial[];
   filteredFinancials!: Financial[];
+  todayFinancials!: Financial[];
 
   date: Date = new Date(Date.now());
   monthNames = [
@@ -82,6 +83,15 @@ export class HomePageComponent {
         this.filteredFinancials = this.financials.filter(
           (financial) => !financial.isPaid
         );
+        this.todayFinancials = this.filteredFinancials.filter((financial) => {
+          return (financial.dateToPay[3] === '0' &&
+            financial.dateToPay ===
+              `${this.day}/0${this.date.getMonth() + 1}/${this.year}`) ||
+            financial.dateToPay ===
+              `${this.day}/${this.date.getMonth() + 1}/${this.year}`
+            ? financial
+            : false;
+        });
       },
       (error) => {
         console.error(error);
