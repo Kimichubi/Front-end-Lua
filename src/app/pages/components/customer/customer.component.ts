@@ -25,6 +25,7 @@ import { Router, RouterLink } from '@angular/router';
     AlertSuccessComponent,
     AlertFailComponent,
   ],
+
   providers: [CustomerService],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css',
@@ -51,6 +52,7 @@ export class CustomerComponent {
     dateToChange: new FormControl('', Validators.required),
     product: new FormControl('', Validators.required),
   });
+  searchQuery = new FormControl('');
 
   ngOnInit() {
     this.customerService.getCustomers(this.page).subscribe(
@@ -103,5 +105,28 @@ export class CustomerComponent {
   }
   handleGoToClientPage(id: number) {
     this.navigation.navigate([`customer/${id}`]);
+  }
+
+  search() {
+    if (this.searchQuery.value! == '') {
+      this.customerService.getCustomers(1).subscribe(
+        (response) => {
+          this.customers = response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+    this.customerService
+      .searchCustomer(this.page, this.searchQuery.value!)
+      .subscribe(
+        (response) => {
+          this.customers = response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }

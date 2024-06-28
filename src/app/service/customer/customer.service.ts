@@ -19,6 +19,24 @@ export class CustomerService {
       headers: header,
     });
   }
+  getOneCustomerById(id: number): Observable<Customer> {
+    const token = sessionStorage.getItem('token-api');
+    const header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Customer>(`${this.baseUrl}/customer/one?id=${id}`, {
+      headers: header,
+    });
+  }
+  searchCustomer(page: number, content: string): Observable<Customer[]> {
+    const token = sessionStorage.getItem('token-api');
+    const header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Customer[]>(
+      `${this.baseUrl}/customer/search?content=${content}&page=${page}`,
+      {
+        headers: header,
+      }
+    );
+  }
+
   creatNewCustomer(data: {
     name: string;
     address: string;
@@ -32,13 +50,6 @@ export class CustomerService {
       .set('Content-Type', 'application/json');
     const body = JSON.stringify(data);
     return this.http.post<Customer>(`${this.baseUrl}/customer/create`, body, {
-      headers: header,
-    });
-  }
-  getOneCustomerById(id: number): Observable<Customer> {
-    const token = sessionStorage.getItem('token-api');
-    const header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<Customer>(`${this.baseUrl}/customer/one?id=${id}`, {
       headers: header,
     });
   }
