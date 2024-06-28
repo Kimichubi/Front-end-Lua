@@ -34,6 +34,7 @@ export class FinancialSpecPageComponent {
 
   financial!: Financial;
   financialId = this.router.snapshot.paramMap.get('id');
+
   ngOnInit() {
     this.financialService.getOneFinancial(Number(this.financialId)).subscribe(
       (response) => {
@@ -77,7 +78,7 @@ export class FinancialSpecPageComponent {
       })
       .subscribe(
         (response) => {
-          console.log(this.editFormGroup.value);
+
           this.financial = response;
         },
         (error) => {

@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<div class="product-container">
+  <h1>{{ product.name }}</h1>
+  <div class="product-details">
+    <form
+      [formGroup]="editFormGroup"
+      (ngSubmit)="handleSubmit()"
+      id="product-form"
+    >
+      <p>
+        <strong>Nome:</strong>
+        <input
+          formControlName="name"
+          type="text"
+          id="quantity"
+          [value]="product.name"
+        />
+      </p>
+      <p>
+        <strong>Quantidade:</strong>
+        <input
+          formControlName="quantity"
+          type="number"
+          id="quantity"
+          [value]="product.quantity"
+        />
+      </p>
+      <p>
+        <strong>Valor:</strong>
+        <input
+          formControlName="value"
+          type="number"
+          id="value"
+          [value]="product.value"
+        />
+      </p>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<app-footer></app-footer>

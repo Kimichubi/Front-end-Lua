@@ -45,7 +45,9 @@
           <p><strong>Nome:</strong> {{ product.name }}</p>
           <p><strong>Preço:</strong> R$ {{ product.value }}</p>
           <p><strong>Quantidade:</strong> {{ product.quantity }}</p>
-          <button class="btn-access">Acessar</button>
+          <button class="btn-access" (click)="handleRouteProduct(product.id)">
+            Acessar
+          </button>
         </li>
         }
       </ul>

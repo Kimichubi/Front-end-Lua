@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CategoryService } from '../../../service/category/category.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HeaderComponent } from '../../common/header/header.component';
 import { FooterComponent } from '../../common/footer/footer.component';
 import { AlertSuccessComponent } from '../../common/alert-success/alert-success.component';
@@ -36,7 +36,8 @@ export class CategorySpecPageComponent {
   constructor(
     private categoryService: CategoryService,
     private productService: ProductService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private navigation: Router
   ) {}
 
   viewMode: string = 'listar';
@@ -98,5 +99,8 @@ export class CategorySpecPageComponent {
           }, 1000 * 3);
         }
       );
+  }
+  handleRouteProduct(id: number) {
+    this.navigation.navigate([`product/${id}`]);
   }
 }

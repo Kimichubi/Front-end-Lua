@@ -18,6 +18,14 @@ export class ProductService {
     });
   }
 
+  getOneProduct(id: number): Observable<Product> {
+    const token = sessionStorage.getItem('token-api');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Product>(`${this.baseUrl}/product/one?id=${id}`, {
+      headers,
+    });
+  }
+
   newProduct(data: {
     name: string;
     quantity: number;
@@ -30,8 +38,25 @@ export class ProductService {
       .set('Authorization', `Bearer ${token}`)
       .set('Content-Type', 'application/json');
     const body = JSON.stringify(data);
-    console.log(body);
+
     return this.http.post<Product>(`${this.baseUrl}/product/create`, body, {
+      headers,
+    });
+  }
+  updateProduct(data: {
+    id: number;
+    name: string;
+    quantity: number;
+    value: number;
+  }): Observable<Product> {
+    const token = sessionStorage.getItem('token-api');
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'application/json');
+    const body = JSON.stringify(data);
+
+    return this.http.put<Product>(`${this.baseUrl}/product/update`, body, {
       headers,
     });
   }
