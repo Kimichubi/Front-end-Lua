@@ -1,0 +1,161 @@
+<div class="container">
+  <h1 class="page-title">Vendas Cadastradas</h1>
+
+  <div class="navbar">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <button (click)="viewMode = 'listar'" class="nav-button">
+          Listar Vendas
+        </button>
+      </li>
+      <li class="nav-item">
+        <button (click)="viewMode = 'criar'" class="nav-button">
+          Criar Nova Venda
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  @if (viewMode === 'listar') {
+  <div class="list-view">
+    <div class="search-container">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Buscar Vendas..."
+        [formControl]="searchQuery"
+        (keyup)="search()"
+      />
+    </div>
+
+    <ul class="sell-list">
+      @for (sell of sells; track sell.id) {
+      <li class="sell-item">
+        <div class="sell-info">
+          <p class="sell-dateOfSell">Data da Venda: {{ sell.dateOfSell }}</p>
+          <p class="sell-dateToInstall">
+            Data da Instalação: {{ sell.dateToInstall }}
+          </p>
+          <p class="sell-value">Valor: R$ {{ sell.value }}</p>
+          <p class="sell-paymentMethod">
+            Método de Pagamento: {{ sell.paymentMethod }}
+          </p>
+          <div class="sell-customer">
+            <h3>Cliente</h3>
+            <p>Nome: {{ sell.customer.name }}</p>
+            <p>Endereço: {{ sell.customer.address }}</p>
+          </div>
+          <div class="sell-products">
+            <h3>Produtos</h3>
+            <ul class="product-list">
+              @for (product of sell.products; track product.id) {
+              <li class="product-item">
+                <p><strong>Nome:</strong> {{ product.name }}</p>
+                <p><strong>Quantidade:</strong> {{ product.quantity }}</p>
+              </li>
+              }
+            </ul>
+          </div>
+        </div>
+        <div class="sell-actions">
+          <button (click)="handleGoToSellPage(sell.id)" class="action-button">
+            Acessar
+          </button>
+        </div>
+      </li>
+      }
+    </ul>
+  </div>
+  } @if (viewMode === 'criar') {
+  <div class="create-view">
+    <form
+      [formGroup]="sellFormGroup"
+      (ngSubmit)="handleSubmit()"
+      class="sell-form"
+    >
+      <div class="form-group">
+        <label for="dateOfSell">Data da Venda:</label>
+        <input
+          formControlName="dateOfSell"
+          type="text"
+          id="dateOfSell"
+          name="dateOfSell"
+          required
+          class="form-input"
+        />
+      </div>
+      <div class="form-group">
+        <label for="dateToInstall">Data de Instalação:</label>
+        <input
+          formControlName="dateToInstall"
+          type="text"
+          id="dateToInstall"
+          name="dateToInstall"
+          required
+          class="form-input"
+        />
+      </div>
+      <div class="form-group">
+        <label for="value">Valor:</label>
+        <input
+          formControlName="value"
+          type="text"
+          id="value"
+          name="value"
+          required
+          class="form-input"
+        />
+      </div>
+      <div class="form-group">
+        <label for="paymentMethod">Método de Pagamento:</label>
+        <select
+          formControlName="paymentMethod"
+          id="paymentMethod"
+          required
+          class="form-input"
+        >
+          <option value="">Selecione um método de pagamento</option>
+          @for (method of paymentMethods; track method.id) {
+          <option [value]="method.id">
+            {{ method.name }}
+          </option>
+          }
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="customer">Cliente:</label>
+        <select
+          formControlName="customer"
+          id="customer"
+          required
+          class="form-input"
+        >
+          <option value="">Selecione um cliente</option>
+          @for (customer of customers; track customer.id) {
+          <option [value]="customer.id">
+            {{ customer.name }}
+          </option>
+          }
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="customerProduct">Produto:</label>
+        <select
+          formControlName="product"
+          id="customerProduct"
+          required
+          class="form-input"
+        >
+          <option value="">Selecione um produto</option>
+          @for (product of products; track product.id) {
+          <option [value]="product.id">
+            {{ product.name }}
+          </option>
+          }
+        </select>
+      </div>
+      <button type="submit" class="btn-submit">Criar Venda</button>
+    </form>
+  </div>
+  }
+</div>

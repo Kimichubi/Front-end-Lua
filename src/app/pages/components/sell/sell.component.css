@@ -1,0 +1,160 @@
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Page Title */
+.page-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+/* Navbar */
+.navbar {
+  margin-bottom: 20px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.nav-item {
+}
+
+.nav-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nav-button:hover {
+  background-color: #0056b3;
+}
+
+/* List View */
+.list-view {
+  margin-top: 20px;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sell-list {
+  list-style: none;
+  padding: 0;
+}
+
+.sell-item {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.sell-info {
+  margin-bottom: 20px;
+}
+
+.sell-info p {
+  margin: 5px 0;
+}
+
+.sell-products {
+  margin-top: 10px;
+}
+
+.product-list {
+  list-style: none;
+  padding: 0;
+}
+
+.product-item {
+  margin: 5px 0;
+}
+
+.sell-actions {
+  text-align: right;
+}
+
+.action-button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: #218838;
+}
+
+/* Create View */
+.create-view {
+  margin-top: 20px;
+}
+
+.sell-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-submit {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+}
+
+/* Alerts */
+app-alert-success,
+app-alert-fail {
+  margin-top: 20px;
+}
+
+app-alert-success {
+  color: #28a745;
+}
+
+app-alert-fail {
+  color: #dc3545;
+}

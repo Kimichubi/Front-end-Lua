@@ -19,11 +19,24 @@ export class SellsService {
     });
   }
   creatNewSell(data: {
-    dateOfSell: string;
-    dateToInstall: string;
-    value: number;
-    customer: { connect: { id: number } };
-    products: { connect: { id: number } };
+    sellData: {
+      dateOfSell: string;
+      dateToInstall: string;
+      value: 450;
+      paymentMethod: string;
+      customer: { connect: { id: number } };
+      products: { connect: { id: number } };
+    };
+    productData: [
+      {
+        productId: number;
+        quantity: number;
+      },
+      {
+        productId: number;
+        quantity: number;
+      }
+    ];
   }): Observable<Sell> {
     const token = sessionStorage.getItem('token-api');
     const header = new HttpHeaders()
