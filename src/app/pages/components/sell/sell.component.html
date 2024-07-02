@@ -95,17 +95,7 @@
           class="form-input"
         />
       </div>
-      <div class="form-group">
-        <label for="value">Valor:</label>
-        <input
-          formControlName="value"
-          type="text"
-          id="value"
-          name="value"
-          required
-          class="form-input"
-        />
-      </div>
+
       <div class="form-group">
         <label for="paymentMethod">Método de Pagamento:</label>
         <select
@@ -138,21 +128,55 @@
           }
         </select>
       </div>
-      <div class="form-group">
-        <label for="customerProduct">Produto:</label>
-        <select
-          formControlName="product"
-          id="customerProduct"
-          required
-          class="form-input"
-        >
-          <option value="">Selecione um produto</option>
-          @for (product of products; track product.id) {
-          <option [value]="product.id">
-            {{ product.name }}
-          </option>
-          }
-        </select>
+      <div class="form-group" id="form-group">
+        <form [formGroup]="productsFormGroup" (ngSubmit)="addProduct()">
+          <label for="customerProduct">Produto:</label>
+          <select
+            formControlName="products"
+            id="customerProduct"
+            required
+            class="form-input"
+          >
+            <option value="">Selecione um produto</option>
+            @for (product of products; track product.id) {
+            <option [value]="product.id">
+              {{ product.name }}
+            </option>
+            }
+          </select>
+          <input
+            formControlName="quantity"
+            type="number"
+            placeholder="Quantidade"
+          />
+          <button>Adicionar</button>
+          <div class="products-selected">
+            <p>Produtos Selecionados!</p>
+
+            @for(product of productsFormArray; track $index){
+            <p>{{ product.name }}</p>
+            <p>R${{ product.value }} unidade</p>
+            <p>Quantidade : {{ quantityChosed[$index] }}</p>
+            <p>Editar quantidade:</p>
+            <input
+              type="number"
+              [value]="quantityChosed[$index]"
+              name="quantity"
+              id="quantity"
+              [formControl]="quantityInput"
+              (keyup)="attQuantity($event, $index)"
+            />
+            <br />
+            <button (click)="acessProduct(product.id)">Acessar produto</button>
+            <h3>
+              Valor total deste produto: R${{ produtctAndQuantity[$index] }}
+            </h3>
+            <hr />
+            <br />
+            }
+          </div>
+          <h3>Valor Total : R${{ productTotalValue }}</h3>
+        </form>
       </div>
       <button type="submit" class="btn-submit">Criar Venda</button>
     </form>

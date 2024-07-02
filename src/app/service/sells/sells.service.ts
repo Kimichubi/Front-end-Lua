@@ -22,16 +22,11 @@ export class SellsService {
     sellData: {
       dateOfSell: string;
       dateToInstall: string;
-      value: 450;
+      value: number;
       paymentMethod: string;
       customer: { connect: { id: number } };
-      products: { connect: { id: number } };
     };
     productData: [
-      {
-        productId: number;
-        quantity: number;
-      },
       {
         productId: number;
         quantity: number;
