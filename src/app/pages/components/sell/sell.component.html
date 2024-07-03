@@ -33,6 +33,11 @@
       <li class="sell-item">
         <div class="sell-info">
           <p class="sell-dateOfSell">Data da Venda: {{ sell.dateOfSell }}</p>
+          @if(sell.isPaid){
+          <p>Está paga : Sim</p>
+          }@else {
+          <p>Está paga : Não</p>
+          }
           <p class="sell-dateToInstall">
             Data da Instalação: {{ sell.dateToInstall }}
           </p>
@@ -48,10 +53,16 @@
           <div class="sell-products">
             <h3>Produtos</h3>
             <ul class="product-list">
-              @for (product of sell.products; track product.id) {
+              @for (product of sell.products; track $index) {
               <li class="product-item">
                 <p><strong>Nome:</strong> {{ product.name }}</p>
-                <p><strong>Quantidade:</strong> {{ product.quantity }}</p>
+                <p>
+                  <strong>Quantidade adquirida pelo cliente :</strong>
+                  {{ sell.sellProducts[$index].quantity }}
+                </p>
+                <p>
+                  <strong>Quantidade no estoque:</strong> {{ product.quantity }}
+                </p>
               </li>
               }
             </ul>
@@ -60,6 +71,11 @@
         <div class="sell-actions">
           <button (click)="handleGoToSellPage(sell.id)" class="action-button">
             Acessar
+          </button>
+        </div>
+        <div class="sell-actions">
+          <button (click)="handleGoToSellPage(sell.id)" class="action-button">
+            Deletar
           </button>
         </div>
       </li>

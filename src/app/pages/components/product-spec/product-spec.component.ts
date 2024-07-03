@@ -11,13 +11,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-product-spec',
   standalone: true,
-  imports: [
-    HeaderComponent,
-    FooterComponent,
-    AlertFailComponent,
-    AlertSuccessComponent,
-    ReactiveFormsModule,
-  ],
+  imports: [AlertFailComponent, AlertSuccessComponent, ReactiveFormsModule],
   templateUrl: './product-spec.component.html',
   styleUrl: './product-spec.component.css',
 })

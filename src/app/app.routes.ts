@@ -12,6 +12,7 @@ import { FinancialSpecPageComponent } from './pages/components/financial-spec-pa
 import { ProductSpecComponent } from './pages/components/product-spec/product-spec.component';
 import { LayoutAppComponent } from './pages/components/layout-app/layout-app.component';
 import { SellComponent } from './pages/components/sell/sell.component';
+import { SellSpecPageComponent } from './pages/components/sell-spec-page/sell-spec-page.component';
 
 export const routes: Routes = [
   {
@@ -65,6 +66,11 @@ export const routes: Routes = [
       {
         path: 'sells',
         component: SellComponent,
+        title: `Sell Page`,
+      },
+      {
+        path: 'sell/:id',
+        component: SellSpecPageComponent,
         title: `Sell Page`,
       },
     ],

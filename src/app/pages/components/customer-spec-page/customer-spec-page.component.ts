@@ -59,10 +59,10 @@ export class CustomerSpecPageComponent {
       (response) => {
         this.customer = response;
         this.editFormGroup = this.formBuilder.group({
-          name: [this.customer.name],
-          address: [this.customer.address],
-          phone: [this.customer.phone],
-          dateToChange: [this.customer.dateToChange],
+          name: this.customer.name,
+          address: this.customer.address,
+          phone: this.customer.phone,
+          dateToChange: this.customer.dateToChange,
         });
       },
       (error) => {

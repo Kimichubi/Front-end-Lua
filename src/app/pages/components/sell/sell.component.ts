@@ -104,7 +104,9 @@ export class SellComponent implements OnInit {
     );
   }
 
-  handleGoToSellPage(id: number) {}
+  handleGoToSellPage(id: number) {
+    this.navigation.navigate([`sell/${id}`]);
+  }
   search() {}
   handleSubmit() {
     //@ts-ignore
@@ -154,6 +156,7 @@ export class SellComponent implements OnInit {
         }
       );
   }
+
   addProduct() {
     this.quantityChosed.push(this.productsFormGroup.value.quantity);
 

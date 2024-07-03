@@ -1,0 +1,119 @@
+<div class="sell-inspector">
+  <h2>Informações da venda:</h2>
+  @if (sell) {
+  <form
+    [formGroup]="editFormGroup"
+    (ngSubmit)="handleSubmit()"
+    class="sell-form"
+  >
+    <div class="form-group">
+      <label for="dateOfSell">Data da venda</label>
+      <input
+        id="dateOfSell"
+        formControlName="dateOfSell"
+        type="text"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="dateToInstall">Data para instalar</label>
+      <input
+        id="dateToInstall"
+        formControlName="dateToInstall"
+        type="text"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="isPaid">Está pago</label>
+      <select id="isPaid" formControlName="isPaid" class="form-control">
+        <option [value]="true">Sim</option>
+        <option [value]="false">Não</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="value">Valor</label>
+      <input
+        id="value"
+        formControlName="value"
+        type="number"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="paymentMethod"
+        >Método de Pagamento:
+        {{ sell.paymentMethod.toLocaleUpperCase() }}</label
+      >
+
+      <select
+        formControlName="paymentMethods"
+        id="paymentMethod"
+        required
+        class="form-control"
+      >
+        @for (method of paymentMethods; track $index) {
+        <option [value]="method.name">
+          {{ method.name.toLocaleUpperCase() }}
+        </option>
+        }
+      </select>
+    </div>
+    <div class="add-product">
+      <h3>Adicionar novo produto ao cliente</h3>
+      <form [formGroup]="addProductGroup" (ngSubmit)="handleAddProduct()">
+        <div class="form-group">
+          <select
+            formControlName="products"
+            id="customerProduct"
+            class="form-control"
+          >
+            <option value="">Selecione um produto</option>
+            @for (product of products; track product.id) {
+            <option [value]="product.id">{{ product.name }}</option>
+            }
+          </select>
+        </div>
+        <div class="form-group">
+          <input
+            type="number"
+            formControlName="quantity"
+            placeholder="Quantidade"
+            class="form-control"
+          />
+        </div>
+        <button type="submit" class="btn btn-add">Adicionar</button>
+      </form>
+    </div>
+    <div class="form-group">
+      <label for="products">Produtos</label>
+
+      <ul id="products" class="product-list">
+        @for (product of sell.products; track $index) {
+        <li class="product-item">
+          <p>Nome produto : {{ product.name }}</p>
+          <p>
+            Quantidade:
+            <input
+              formControlName="attQuantity.quantity[$index]"
+              type="number"
+              placeholder="Quantity"
+              class="form-control"
+              [value]="sell.sellProducts[$index].quantity"
+            />
+          </p>
+          <button
+            type="button"
+            class="btn btn-remove"
+            (click)="removeProduct($index)"
+          >
+            Remover
+          </button>
+        </li>
+        }
+      </ul>
+    </div>
+    <button type="submit">Editar</button>
+  </form>
+  }
+</div>
