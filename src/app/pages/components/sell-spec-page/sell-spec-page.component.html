@@ -77,7 +77,7 @@
         <div class="form-group">
           <input
             type="number"
-            formControlName="quantity"
+            formControlName="quantityProducts"
             placeholder="Quantidade"
             class="form-control"
           />
@@ -85,17 +85,16 @@
         <button type="submit" class="btn btn-add">Adicionar</button>
       </form>
     </div>
-    <div class="form-group">
+    <div formArrayName="quantity" class="form-group">
       <label for="products">Produtos</label>
-
       <ul id="products" class="product-list">
-        @for (product of sell.products; track $index) {
+        @for (product of sell.sellProducts; track $index) {
         <li class="product-item">
-          <p>Nome produto : {{ product.name }}</p>
+          <p>Nome produto : {{ sell.products[$index].name }}</p>
           <p>
-            Quantidade:
+            Quantidade: {{ quantity.controls.length }}
             <input
-              formControlName="attQuantity.quantity[$index]"
+              [formControlName]="$index"
               type="number"
               placeholder="Quantity"
               class="form-control"
@@ -110,6 +109,7 @@
             Remover
           </button>
         </li>
+
         }
       </ul>
     </div>

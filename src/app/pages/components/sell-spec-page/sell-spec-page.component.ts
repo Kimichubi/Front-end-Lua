@@ -26,7 +26,8 @@ export class SellSpecPageComponent {
   constructor(
     private router: ActivatedRoute,
     private sellService: SellsService,
-    private productService: ProductService
+    private productService: ProductService,
+    private fb: FormBuilder
   ) {}
   editFormGroup!: FormGroup;
 
@@ -61,9 +62,10 @@ export class SellSpecPageComponent {
           paymentMethods: new FormControl(
             this.paymentMethods.map((pm) => pm.name)
           ),
-          attQuantity: new FormControl({
-            quantity: this.sell.sellProducts.map((vl) => vl.quantity),
-          }),
+
+          quantity: this.fb.array(
+            this.sell.sellProducts.map((vl) => this.fb.control(vl.quantity))
+          ),
         });
 
         console.log(this.editFormGroup.value);
@@ -77,7 +79,7 @@ export class SellSpecPageComponent {
         this.products = response;
         this.addProductGroup = new FormGroup({
           products: new FormControl(this.products),
-          quantity: new FormControl(''),
+          quantityProducts: new FormControl(''),
         });
       },
       (error) => {
@@ -86,8 +88,8 @@ export class SellSpecPageComponent {
     );
   }
 
-  get quantitiesFormArray(): FormArray {
-    return this.editFormGroup.get('attQuantity') as FormArray;
+  get quantity() {
+    return this.editFormGroup.get('quantity') as FormArray;
   }
 
   handleAddProduct() {}
