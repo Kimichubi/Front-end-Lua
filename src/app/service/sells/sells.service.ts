@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Sell } from '../../interface/Sells';
+import { Product } from '../../interface/Product';
 
 @Injectable({
   providedIn: 'root',
@@ -51,19 +52,28 @@ export class SellsService {
   }
 
   updateSellInfo(data: {
-    id: number;
-    dateOfSell: string;
-    dateToInstall: string;
-    value: number;
-    customerId: number;
-    products?: { connect: { id: number } };
+    sellData: {
+      id: number;
+      customerId?: number;
+      dateOfSell?: string;
+      dateToInstall?: string;
+      value?: number;
+      isPaid?: boolean | null;
+      paymentMethod?: string;
+    };
+    productData: {
+      sellProductId?: number;
+      productId: number;
+      quantity: number;
+      justUpdated: boolean;
+    }[];
   }): Observable<Sell> {
     const token = sessionStorage.getItem('token-api');
     const header = new HttpHeaders()
       .set('Authorization', `Bearer ${token}`)
       .set('Content-Type', 'application/json');
     const body = JSON.stringify(data);
-    return this.http.put<Sell>(`${this.baseUrl}/customer/update`, body, {
+    return this.http.put<Sell>(`${this.baseUrl}/sell/update`, body, {
       headers: header,
     });
   }

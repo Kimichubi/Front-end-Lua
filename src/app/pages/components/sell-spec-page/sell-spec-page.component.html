@@ -25,7 +25,7 @@
       />
     </div>
     <div class="form-group">
-      <label for="isPaid">Está pago</label>
+      <label for="isPaid">Está pago: {{ sell.isPaid ? "Sim" : "Não" }}</label>
       <select id="isPaid" formControlName="isPaid" class="form-control">
         <option [value]="true">Sim</option>
         <option [value]="false">Não</option>
@@ -47,9 +47,8 @@
       >
 
       <select
-        formControlName="paymentMethods"
+        formControlName="paymentMethod"
         id="paymentMethod"
-        required
         class="form-control"
       >
         @for (method of paymentMethods; track $index) {
@@ -61,10 +60,10 @@
     </div>
     <div class="add-product">
       <h3>Adicionar novo produto ao cliente</h3>
-      <form [formGroup]="addProductGroup" (ngSubmit)="handleAddProduct()">
+      <div formGroupName="addProductGroup">
         <div class="form-group">
           <select
-            formControlName="products"
+            formControlName="productId"
             id="customerProduct"
             class="form-control"
           >
@@ -75,31 +74,42 @@
           </select>
         </div>
         <div class="form-group">
+          <label for="quantityProduct">Quantidade:</label>
           <input
             type="number"
-            formControlName="quantityProducts"
+            formControlName="quantityProduct"
             placeholder="Quantidade"
             class="form-control"
+            id="quantityProduct"
           />
         </div>
-        <button type="submit" class="btn btn-add">Adicionar</button>
-      </form>
+        <button (click)="handleAddProduct()" class="btn btn-add">
+          Adicionar
+        </button>
+      </div>
     </div>
     <div formArrayName="quantity" class="form-group">
       <label for="products">Produtos</label>
       <ul id="products" class="product-list">
         @for (product of sell.sellProducts; track $index) {
         <li class="product-item">
-          <p>Nome produto : {{ sell.products[$index].name }}</p>
           <p>
-            Quantidade: {{ quantity.controls.length }}
+            Nome produto :
+            {{ sell.products[$index].name }}
+          </p>
+          <p>
+            Quantidade:
             <input
               [formControlName]="$index"
               type="number"
               placeholder="Quantity"
               class="form-control"
-              [value]="sell.sellProducts[$index].quantity"
+              (keypress)="keyupTest()"
             />
+          </p>
+          <p>Valor: R${{ sell.products[$index].value }}</p>
+          <p>
+            Valor Total: R${{ sell.products[$index].value * product.quantity }}
           </p>
           <button
             type="button"
@@ -113,6 +123,7 @@
         }
       </ul>
     </div>
+    <h3>Total : R${{ sell.value }}</h3>
     <button type="submit">Editar</button>
   </form>
   }
