@@ -186,4 +186,15 @@ export class SellComponent implements OnInit {
       (pv, cr) => cr + pv
     );
   }
+  deleteSell(id: number) {
+    this.sellService.deleteSell({ id }).subscribe(
+      (response) => {
+        console.log(response);
+        this.ngOnInit();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

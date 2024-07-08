@@ -51,19 +51,6 @@ export class SellsService {
     });
   }
 
-  deleteSellProduct(data: { id: number }): Observable<Sell> {
-    const token = sessionStorage.getItem('token-api');
-    const header = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`)
-      .set('Content-Type', 'application/json');
-    return this.http.delete<Sell>(
-      `${this.baseUrl}/sell/delete/sellProduct?id=${data.id}`,
-      {
-        headers: header,
-      }
-    );
-  }
-
   updateSellInfo(data: {
     sellData: {
       id: number;
@@ -87,6 +74,27 @@ export class SellsService {
       .set('Content-Type', 'application/json');
     const body = JSON.stringify(data);
     return this.http.put<Sell>(`${this.baseUrl}/sell/update`, body, {
+      headers: header,
+    });
+  }
+  deleteSellProduct(data: { id: number }): Observable<Sell> {
+    const token = sessionStorage.getItem('token-api');
+    const header = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'application/json');
+    return this.http.delete<Sell>(
+      `${this.baseUrl}/sell/delete/sellProduct?id=${data.id}`,
+      {
+        headers: header,
+      }
+    );
+  }
+  deleteSell(data: { id: number }): Observable<Sell> {
+    const token = sessionStorage.getItem('token-api');
+    const header = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'application/json');
+    return this.http.delete<Sell>(`${this.baseUrl}/sell/delete?id=${data.id}`, {
       headers: header,
     });
   }
