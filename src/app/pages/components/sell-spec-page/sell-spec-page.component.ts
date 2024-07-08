@@ -90,7 +90,7 @@ export class SellSpecPageComponent {
     const sellProductToUpdate = this.sell.sellProducts.filter(
       (vl) => Number(this.addProductGroup.value.productId) === vl.productId
     );
-    console.log(sellProductToUpdate);
+
     if (sellProductToUpdate.length > 0) {
       this.sellService
         .updateSellInfo({
@@ -112,6 +112,7 @@ export class SellSpecPageComponent {
         .subscribe(
           (response) => {
             this.sell = response;
+            this.ngOnInit();
           },
           (error) => {
             console.error(error);
@@ -125,11 +126,10 @@ export class SellSpecPageComponent {
             {
               justUpdated: false,
               productId: Number(
-                sellProductToUpdate.map((vl) => vl.productId)[0]
+                this.editFormGroup.value.addProductGroup.productId
               ),
               quantity: Number(
-                sellProductToUpdate.map((vl) => vl.quantity)[0] +
-                  Number(this.addProductGroup.value.quantityProduct)
+                this.editFormGroup.value.addProductGroup.quantityProduct
               ),
             },
           ],
@@ -137,6 +137,7 @@ export class SellSpecPageComponent {
         .subscribe(
           (response) => {
             this.sell = response;
+            this.ngOnInit();
           },
           (error) => {
             console.error(error);
@@ -145,8 +146,18 @@ export class SellSpecPageComponent {
     }
   }
 
-  removeProduct(index: number) {}
-  
+  removeProduct(id: number) {
+    this.sellService.deleteSellProduct({ id }).subscribe(
+      (response) => {
+        console.log(response);
+        this.ngOnInit();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
   handleSubmit() {
     let total = 0;
     this.editFormGroup.value.quantity.forEach((vl: any, index: any) => {
@@ -157,7 +168,7 @@ export class SellSpecPageComponent {
       (vl) => Number(this.addProductGroup.value.productId) === vl.productId
     );
     //@ts-ignore
-    const productData: {
+    let productData: {
       productId: number;
       quantity: number;
       sellProductId: number;
@@ -175,6 +186,8 @@ export class SellSpecPageComponent {
     }
 
     if (sellProductToUpdate.length > 0) {
+      //@ts-ignore
+      productData = sellProductToUpdate;
       this.sellService
         .updateSellInfo({
           sellData: {

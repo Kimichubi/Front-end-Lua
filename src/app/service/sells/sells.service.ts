@@ -51,6 +51,19 @@ export class SellsService {
     });
   }
 
+  deleteSellProduct(data: { id: number }): Observable<Sell> {
+    const token = sessionStorage.getItem('token-api');
+    const header = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'application/json');
+    return this.http.delete<Sell>(
+      `${this.baseUrl}/sell/delete/sellProduct?id=${data.id}`,
+      {
+        headers: header,
+      }
+    );
+  }
+
   updateSellInfo(data: {
     sellData: {
       id: number;
