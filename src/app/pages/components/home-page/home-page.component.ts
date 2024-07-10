@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { HeaderComponent } from '../../common/header/header.component';
 import { FooterComponent } from '../../common/footer/footer.component';
 import { Router, RouterLink } from '@angular/router';
@@ -18,6 +18,7 @@ import { Sell } from '../../../interface/Sells';
   selector: 'app-home-page',
   standalone: true,
   imports: [HeaderComponent, FooterComponent, DatePipe, RouterLink],
+
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
   providers: [UserService, FinancialService],

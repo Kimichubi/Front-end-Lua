@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="welcome-message">Bem-vindo, {{ user.name }}</h1>
+  <h3 class="welcome-message">Bem-vindo, {{ user.name }}</h3>
   <div class="date">
     <p>{{ day }} de {{ month }} de {{ year }}</p>
   </div>
@@ -7,17 +7,18 @@
     <p>O que devemos fazer hoje?</p>
   </div>
 </div>
+
 <div class="financial-section">
   <h2>Financeiro - Contas a Pagar</h2>
   <ul class="financial-list">
-    @for(financial of filteredFinancials; track financial.id){
+    @for ( financial of filteredFinancials; track financial.id) {
     <li class="financial-item">
       <p>
         <strong>{{ financial.name }}</strong>
       </p>
-      @if(financial.isFixed){
+      @if (financial.isFixed) {
       <p><strong>Tipo de conta:</strong> Fixa</p>
-      }@else{
+      } @else {
       <p><strong>Tipo de conta:</strong> Variável</p>
       }
       <p><strong>Data:</strong> {{ financial.date }}</p>
@@ -27,24 +28,25 @@
       <p><strong>Status:</strong> Não está Paga</p>
       <p><strong>Valor:</strong> R$ {{ financial.value }}</p>
     </li>
-    } @if(filteredFinancials.length === 0){
+    } @if (filteredFinancials.length === 0) {
     <li>Não há contas a pagar no momento.</li>
     }
   </ul>
 </div>
+
 <div class="financial-section">
   <h2>
     Financeiro - Contas a Pagar no dia de {{ day }} de {{ month }} de {{ year }}
   </h2>
   <ul class="financial-list">
-    @for(financial of todayFinancials; track financial.id){
+    @for ( financial of todayFinancials; track financial.id) {
     <li class="financial-item">
       <p>
         <strong>{{ financial.name }}</strong>
       </p>
-      @if(financial.isFixed){
+      @if (financial.isFixed) {
       <p><strong>Tipo de conta:</strong> Fixa</p>
-      }@else{
+      } @else {
       <p><strong>Tipo de conta:</strong> Variável</p>
       }
       <p><strong>Data:</strong> {{ financial.date }}</p>
@@ -54,24 +56,25 @@
       <p><strong>Status:</strong> Não está Paga</p>
       <p><strong>Valor:</strong> R$ {{ financial.value }}</p>
     </li>
-    } @if(filteredFinancials.length === 0){
+    } @if (todayFinancials.length === 0) {
     <li>Não há contas a pagar no momento.</li>
     }
   </ul>
 </div>
+
 <div class="container">
-  <h1>
+  <h3>
     Aqui estão todos os clientes para troca de produto na data de hoje
     {{ day }} de {{ month }}
-  </h1>
-  @for(customer of customersToChange; track customer.id){
+  </h3>
+  @for ( customer of customersToChange; track customer.id) {
   <div class="customer-info">
     <p class="customer-name">Nome do Cliente: {{ customer.name }}</p>
     <p class="customer-address">Endereço: {{ customer.address }}</p>
     <p class="customer-address">Data de troca: {{ customer.dateToChange }}</p>
-    @for(product of customer.products; track product.id){
+    @for ( product of customer.products; track product.id) {
     <p class="product-name">Nome do Produto: {{ product.name }}</p>
-    <p class="product-value">Valor: R${{ product.value }}</p>
+    <p class="product-value">Valor: R$ {{ product.value }}</p>
     }
     <button class="linkButton" (click)="handleClient(customer.id)">
       Acessar
@@ -79,46 +82,48 @@
   </div>
   }
 </div>
+
 <div class="container">
-  <h1>
-    Aqui estão todos os produtos que estão acabando na data de hoje
-    {{ day }} de {{ month }}
-  </h1>
-  @for(product of remainingProducts; track product.id){
-  <div class="customer-info">
-    <p class="customer-name">Nome do Produto: {{ product.name }}</p>
-    <p class="customer-address">Valor: R${{ product.value }}</p>
-    <p class="customer-address">Quantidade: {{ product.quantity }}</p>
+  <h3>
+    Aqui estão todos os produtos que estão acabando na data de hoje {{ day }} de
+    {{ month }}
+  </h3>
+  @for ( product of remainingProducts; track product.id) {
+  <div class="product-info">
+    <p class="product-name">Nome do Produto: {{ product.name }}</p>
+    <p class="product-value">Valor: R$ {{ product.value }}</p>
+    <p class="product-quantity">Quantidade: {{ product.quantity }}</p>
     <button class="linkButton" (click)="handleProduct(product.id)">
       Acessar
     </button>
   </div>
   }
 </div>
+
 <div class="container">
-  <h1>
-    Aqui estão todas as vendas com data de instalação para hoje
-    {{ day }} de {{ month }}
-  </h1>
-  @for(sell of todaySells; track sell.id){
-  <div class="customer-info">
-    <p class="customer-address">Nome do Cliente: {{ sell.customer.name }}</p>
+  <h3>
+    Aqui estão todas as vendas com data de instalação para hoje {{ day }} de
+    {{ month }}
+  </h3>
+  @for ( sell of todaySells; track sell.id) {
+  <div class="sell-info">
+    <p class="customer-name">Nome do Cliente: {{ sell.customer.name }}</p>
     <p class="customer-address">
       Endereço do Cliente: {{ sell.customer.address }}
     </p>
-    <p class="customer-name">Data para instalar: {{ sell.dateToInstall }}</p>
-    <p class="customer-address">Data da venda: {{ sell.dateOfSell }}</p>
-    <p class="customer-address">Valor: R${{ sell.value }}</p>
+    <p class="install-date">Data para instalar: {{ sell.dateToInstall }}</p>
+    <p class="sell-date">Data da venda: {{ sell.dateOfSell }}</p>
+    <p class="sell-value">Valor: R$ {{ sell.value }}</p>
     @if (sell.isPaid) {
-    <p>Esta paga: Sim!</p>
-    }@else {
-    <p>Esta paga: Não!</p>
-    } @for (product of sell.products; track product.id) {
-    <h3>Produtos:</h3>
-    <p class="customer-name">Nome do produto: {{ product.name }}</p>
-    <p class="customer-address">Valor: R${{ product.value }}</p>
+    <p>Está paga: Sim!</p>
+    } @else {
+    <p>Está paga: Não!</p>
     }
-
+    <h3>Produtos:</h3>
+    @for ( product of sell.products; track product.id) {
+    <p class="product-name">Nome do produto: {{ product.name }}</p>
+    <p class="product-value">Valor: R$ {{ product.value }}</p>
+    }
     <button class="linkButton" (click)="handleProduct(sell.id)">Acessar</button>
   </div>
   }

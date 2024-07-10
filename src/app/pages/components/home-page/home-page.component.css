@@ -1,34 +1,35 @@
 .container {
+  margin: 0 auto 30px auto;
   padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  text-align: center; /* Centraliza o texto */
 }
 
 .welcome-message {
-  color: #333;
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
-.date,
+.date {
+  margin-bottom: 10px;
+}
+
 .task-prompt {
-  color: #666;
-  font-size: 1.2em;
   margin-bottom: 20px;
 }
 
 .financial-section {
-  background-color: #fff;
+  margin: 0 auto 30px auto;
   padding: 20px;
-  margin: 20px 0;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  text-align: center; /* Centraliza o texto */
 }
 
 .financial-section h2 {
-  color: #444;
-  font-size: 1.5em;
-  margin-bottom: 15px;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
 .financial-list {
@@ -37,63 +38,109 @@
 }
 
 .financial-item {
-  background-color: #fafafa;
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  text-align: left; /* Alinha o texto à esquerda */
 }
 
 .financial-item p {
-  margin: 5px 0;
-  color: #555;
-}
-
-.customer-info {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.customer-info p {
-  margin: 5px 0;
-}
-
-.customer-name,
-.customer-address {
-  color: #333;
-  font-weight: bold;
-}
-
-.product-name {
-  font-weight: bold;
-  color: #333;
-}
-
-.product-value {
-  color: #555;
+  margin-bottom: 5px;
 }
 
 .linkButton {
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
+  padding: 5px 10px;
   cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s;
-  margin-top: 10px;
 }
 
 .linkButton:hover {
   background-color: #0056b3;
 }
 
-h1,
-h2 {
-  color: #444;
+.customer-info {
+  margin: 0 auto 20px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  text-align: center; /* Centraliza o texto */
+}
+
+.customer-info p {
+  margin-bottom: 5px;
+}
+
+.product-name {
+  font-weight: bold;
+}
+
+.product-value {
+  margin-bottom: 5px;
+}
+
+.product-info {
+  margin: 0 auto 20px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  text-align: center; /* Centraliza o texto */
+}
+
+.product-info p {
+  margin-bottom: 5px;
+}
+
+.product-name {
+  font-weight: bold;
+}
+
+.product-value {
+  margin-bottom: 5px;
+}
+
+.sell-info {
+  margin: 0 auto 20px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  text-align: center; /* Centraliza o texto */
+}
+
+.sell-info p {
+  margin-bottom: 5px;
+}
+
+.customer-name {
+  font-weight: bold;
+}
+
+.install-date {
+  margin-bottom: 10px;
+}
+
+.sell-value {
+  margin-bottom: 10px;
+}
+
+.product-name {
+  font-weight: bold;
+}
+
+.product-value {
+  margin-bottom: 5px;
+}
+
+.linkButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.linkButton:hover {
+  background-color: #0056b3;
 }

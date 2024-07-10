@@ -1,168 +1,183 @@
+/* Estilos gerais para o container principal */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
+  margin-top: 20px;
   padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
 }
 
 .page-title {
-  text-align: center;
-  font-size: 2.5em;
+  font-size: 32px;
   margin-bottom: 20px;
-  color: #333;
 }
 
+/* Estilos para a barra de navegação */
 .navbar {
   margin-bottom: 20px;
-  text-align: center;
 }
 
 .nav-list {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
+  margin: 0;
   display: flex;
-  justify-content: center;
-  gap: 10px;
 }
 
 .nav-item {
-  margin: 0 10px;
+  margin-right: 10px;
 }
 
 .nav-button {
-  background-color: #4caf50;
+  background-color: #007bff;
   color: white;
-  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 16px;
 }
 
 .nav-button:hover {
-  background-color: #45a049;
+  background-color: #0056b3;
 }
 
-/* List View */
+/* Estilos para a visualização de listagem de vendas */
 .list-view {
   margin-top: 20px;
 }
 
 .search-container {
-  text-align: center;
   margin-bottom: 20px;
 }
 
 .search-input {
-  width: 80%;
-  padding: 10px;
+  width: 100%;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .sell-list {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
 }
 
 .sell-item {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
 }
 
-.sell-info p {
-  margin: 5px 0;
+.sell-info {
+  margin-bottom: 10px;
+}
+
+.sell-dateOfSell,
+.sell-dateToInstall,
+.sell-value,
+.sell-paymentMethod {
+  margin-bottom: 5px;
+}
+
+.sell-customer {
+  margin-bottom: 10px;
+}
+
+.sell-customer h3,
+.sell-products h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.product-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.product-item {
+  margin-bottom: 10px;
 }
 
 .sell-actions {
-  text-align: right;
+  margin-top: 10px;
 }
 
 .action-button {
-  background-color: #2196f3;
+  background-color: #dc3545;
   color: white;
-  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  padding: 5px 10px;
   cursor: pointer;
 }
 
 .action-button:hover {
-  background-color: #1976d2;
+  background-color: #c82333;
 }
 
-/* Create View */
+/* Estilos para a visualização de criação de nova venda */
 .create-view {
   margin-top: 20px;
 }
 
 .sell-form {
-  background-color: white;
+  max-width: 600px;
+  border: 1px solid #ccc;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
 }
 
 .form-group {
   margin-bottom: 15px;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
 .form-input {
-  width: 100%;
-  padding: 10px;
+  width: calc(100% - 20px);
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
-.products-selected {
-  background-color: #f9f9f9;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-top: 10px;
-}
-
-.products-selected p {
-  margin: 5px 0;
+.form-input[type="number"] {
+  width: 100px;
 }
 
 .btn-submit {
-  background-color: #4caf50;
+  background-color: #28a745;
   color: white;
-  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 16px;
-  width: 100%;
 }
 
 .btn-submit:hover {
-  background-color: #45a049;
+  background-color: #218838;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .sell-list {
-    grid-template-columns: 1fr;
-  }
+.products-selected {
+  margin-top: 20px;
+}
 
-  .search-input {
-    width: 100%;
-  }
+.products-selected p,
+.products-selected h3 {
+  margin-bottom: 5px;
+}
 
-  .nav-list {
-    flex-direction: column;
-    gap: 5px;
-  }
+/* Estilos específicos para produtos selecionados */
+.products-selected input[type="number"] {
+  width: 80px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.products-selected button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.products-selected button:hover {
+  background-color: #0056b3;
 }

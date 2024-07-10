@@ -1,9 +1,11 @@
-
-
 <div class="full-screen-container">
   <div class="container">
     <div class="financial-item">
-      <form [formGroup]="editFormGroup" (ngSubmit)="handleSubmit()">
+      <form
+        [formGroup]="editFormGroup"
+        (ngSubmit)="handleSubmit()"
+        class="financial-form"
+      >
         <div class="form-group">
           <label for="name">Nome:</label>
           <input
@@ -92,4 +94,3 @@
     </div>
   </div>
 </div>
-
